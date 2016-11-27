@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SmartSolar</title>
+        <link rel="icon" href="/images/logo.png">
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+                        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                        <script src="https://code.highcharts.com/stock/highstock.js"></script>
+                        <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+                        <style>
+                            body {
+                                font: 20px Montserrat, sans-serif;
+                                line-height: 1.1;
+                                color: #1F618D;
+                            }
+                        p {font-size: 16px; color: #34495E}
+                        h3 { color: #34495E }
+                        .margin {margin-bottom: 1px;}
+                        .bg-1 {
+                            background-color: #1abc9c; /* Green */
+                            color: #ffffff;
+                        }
+                        .bg-2 {
+                            background-color: #474e5d; /* light Blue */
+                            color: #EBF5FB;
+                        }
+                        .bg-3 {
+                            background-color: #e6e6e6; /* White */
+                            color: #555555;
+                        }
+                        .bg-4 {
+                            background-color: #2f2f2f; /* Black Gray */
+                            color: #fff;
+                        }
+                        .container-fluid {
+                            padding-top: 15px;
+                            padding-bottom: 15px;
+                        }
+                        .navbar {
+                            padding-top: 15px;
+                            padding-bottom: 15px;
+                            border: 0;
+                            border-radius: 0;
+                            margin-bottom: 0;
+                            font-size: 12px;
+                            letter-spacing: 5px;
+                        }
+                        .navbar-nav  li a:hover {
+                            color: #1abc9c !important;
+                        }
+                        
+                        .banner_holder{
+                            width: 100%;
+                            height: 300px;
+                            min-height: 200px;
+                            position: relative;
+                        }
+                        
+                        .banner_holderImage{
+                            height: 100%;
+                            position:relative;
+                            background:   url("https://s3-us-west-1.amazonaws.com/alittlepieceofmine.com/assets/images/header.jpg")no-repeat;
+                            background-size: cover;
+                            background-position: center;
+                        }
+                        
+                        h2 {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            
+                            width: 100%;
+                            text-align: center;
+                            
+                        }
+                        </style>
+                        
+                        
+    </head>
+    <body>
+        
+        <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://smartsolarsjsu.tech">Home</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://smartsolarsjsu.tech/login/register/">Register</a></li>
+                        <li><a href="http://smartsolarsjsu.tech/login/wp-login.php">Login</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="weather.html">Weather</a></li>
+                        <li><a href="control.php">Control</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="banner_holder">
+            <div class="banner_holderImage"></div>
+            <h2>SmartSolar</h2>
+        </div>
+        
+        <!-- First Container -->
+        <!--<div class="container-fluid bg-1 text-center">
+         <h3 class="margin">Who Am I?</h3>
+         <img src="bird.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
+         <h3>I'm an adventurer</h3>
+         </div>-->
+    
+        
+        <!-- Third Container (Grid) -->
+        <div class="container-fluid bg-3 text-center">
+            <h3 class="margin">The Team</h3> <br>
+             <p> Our mission is to create intelligent, always-improving solar technology to all with intuitive </p> 
+            <p> design and ground-breaking power output levels. The answer is SmartSolar. With this system a collection</p>
+            <p> of connected sensors and motors brings the solar panel to life, bringing a connected experience that </p>
+            <p> does all the heavy lifting for you behind the scenes. </p> <br>
+
+            <br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p>Natalie</p>
+                    <img src="natalie.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+                    <p> Likes to stand in front of waterfalls </p>
+                        </div>
+                <div class="col-sm-4">
+                    <p>Mandy</p>
+                    <img src="mandy.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+                    <p> Enjoys milk tea, playing the piano, driving in "sport" mode, and reading mangas. </p>
+                        </div>
+                <div class="col-sm-4">
+                    <p>Xuan</p>
+                    <img src="xuan.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+                    <p> Error 404 : not found </p>
+                        </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="container-fluid bg-4 text-center">
+            <p1>SmartSolar @ 2016</a></p1>
+        </footer>
+        
+    </body>
+</html>

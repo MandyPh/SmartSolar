@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <title>SmartSolar</title>
+        <link rel="icon" href="/images/logo.png">
         <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -13,18 +14,18 @@
                         <style>
                             body {
                                 font: 20px Montserrat, sans-serif;
-                                line-height: 1.8;
-                                color: #f5f6f7;
+                                line-height: 1.1;
+                                color: #1F618D;
                             }
                         p {font-size: 16px;}
-                        .margin {margin-bottom: 45px;}
+                        .margin {margin-bottom: 20px;}
                         .bg-1 {
                             background-color: #1abc9c; /* Green */
                             color: #ffffff;
                         }
                         .bg-2 {
-                            background-color: #474e5d; /* Dark Blue */
-                            color: #ffffff;
+                            background-color: #474e5d; /* light Blue */
+                            color: #EBF5FB;
                         }
                         .bg-3 {
                             background-color: #e6e6e6; /* White */
@@ -61,7 +62,7 @@
                         .banner_holderImage{
                             height: 100%;
                             position:relative;
-                            background:   url("header.jpg")no-repeat;
+                            background:   url("https://s3-us-west-1.amazonaws.com/alittlepieceofmine.com/assets/images/header.jpg")no-repeat;
                             background-size: cover;
                             background-position: center;
                         }
@@ -70,7 +71,7 @@
                             position: absolute;
                             top: 0;
                             left: 0;
-                            color: #000000;
+                            
                             width: 100%;
                             text-align: center;
                             
@@ -159,15 +160,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Home</a>
+                    <a class="navbar-brand" href="http://smartsolarsjsu.tech">Home</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">About</a></li>
+                        <li><a href="http://smartsolarsjsu.tech/login/register/">Register</a></li>
+                        <li><a href="http://smartsolarsjsu.tech/login/wp-login.php?redirect_to=http%3A%2F%2Fsmartsolarsjsu.tech%2Flogin%2Fwp-login">Login</a></li>
+                        <li><a href="about.html">About</a></li>
                         <li><a href="weather.html">Weather</a></li>
-                        <li><a href="#">Day</a></li>
-                        <li><a href="#">Week</a></li>
-                        <li><a href="#">Control</a></li>
+                        <li><a href="control.php">Control</a></li>
                     </ul>
                 </div>
             </div>
@@ -175,7 +176,7 @@
         
         <div class="banner_holder">
             <div class="banner_holderImage"></div>
-            <h2>Smart Solar</h2>
+            <h2>SmartSolar</h2>
         </div>
         
         <!-- First Container -->
@@ -188,35 +189,17 @@
         <!-- Second Container -->
         <div class="container-fluid bg-2 text-center">
             <h3 class="margin">What is SmartSolar?</h3>
-            <p> Intro to SmartSolar </p>
+            <p> SmartSolar is a solution to the solar panel efficiency/usability probelm. </p> <p>A diverse system of sensors working together brings the user an intuitive control interface, </p> <p>and a library of intelligent algorithms to maximize power ouput.</p> <br>
             <!--<a href="#" class="btn btn-default btn-lg">
                 <span class="glyphicon glyphicon-search"></span> Search
             </a>-->
             <div id="container" style="height: 400px; min-width: 310px"></div>
         </div>
         
-        <!-- Third Container (Grid) -->
-        <div class="container-fluid bg-3 text-center">
-            <h3 class="margin">Team Members</h3><br>
-            <div class="row">
-                <div class="col-sm-4">
-                    <p>Natalie</p>
-                    <img src="MYXJ_20160716191620_save.jpg" class="img-responsive margin" style="width:100%" alt="Image">
-                        </div>
-                <div class="col-sm-4">
-                    <p>Mandy</p>
-                    <img src="mandy.jpg" class="img-responsive margin" style="width:100%" alt="Image">
-                        </div>
-                <div class="col-sm-4">
-                    <p>Xuan</p>
-                    <img src="xuan.jpg" class="img-responsive margin" style="width:100%" alt="Image">
-                        </div>
-            </div>
-        </div>
         
         <!-- Footer -->
         <footer class="container-fluid bg-4 text-center">
-            <p>Smart Solar @ 2016</a></p>
+            <p>SmartSolar @ 2016</a></p>
         </footer>
         
     </body>
