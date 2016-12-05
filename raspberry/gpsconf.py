@@ -1,0 +1,79 @@
+import gps
+import webbrowser
+from ftplib import FTP
+#from pygeocoder import Geocoder
+#import pandas as pd
+#import numpy as np
+
+ftp = FTP('gator3236.hostgator.com')
+ftp.login(user='', passwd = '')
+
+# new gpsd session
+session = gps.gps("localhost", "2947")
+#instantiate new stream gps on session val
+session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
+
+#gps polling value
+keepchecking = "true"
+#google web link
+mapslink = "http://maps.google.com/maps?q="
+#while loop
+while keepchecking == "true":
+    #try=
+    try:
+        #report variable stores gpsd next polling value
+    	report = session.next()
+    	#if seesion.next returned TPV type
+        if report['class'] == 'TPV':
+            #if contains value in class time (lock successfull)
+            if hasattr(report, 'time'):
+                #print latitude
+                print report.lat
+                #print longitude
+                print report.lon
+                #concatenate coordinates to google maps link
+                cow = mapslink + "{:.3f}".format(report.lat) + "," + "{:.3f}".format(report.lon)
+                #no more polling
+                keepchecking = "false"
+                #open gps coordinates in web browser
+                #webbrowser.open(cow)
+    #KeyError handling            
+    except KeyError:
+                #skip
+		pass
+    #ctrl ^c exit
+    except KeyboardInterrupt:
+                #quit
+		quit()
+    #gps polling break
+    except StopIteration:
+                #end session
+		session = None
+		#print "GPSD has terminated"
+		print "GPSD has terminated"
+
+#open python built in file writer
+file = open("coordinates.txt", "w")
+
+#cast gps coordinates to string with 3 digits of percision
+file.write("{:.3f}".format(report.lat) + "," + "{:.3f}".format(report.lon))
+#close file
+file.close()
+
+
+def placeFile():
+    filename = 'coordinates.txt'
+    ftp.storbinary('STOR '+filename, open(filename, 'rb'))
+    ftp.quit
+placeFile()
+
+
+
+#REVERSE GEOCODING FROM GOOGLE MAPS PUBLIC API TO BE IMPLEMENTED
+#latM = report.lat
+#longM = report.lon
+
+#results = Geocoder.reverse_geocode(df[latM][0], df[longM][0])
+#results.city
+
+#g = geocoder.google([latM, lonM], method='reverse') 
