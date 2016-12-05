@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Smart Solar</title>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+                        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                        <script src="https://code.highcharts.com/stock/highstock.js"></script>
+                        <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+                        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+                          <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.6/proj4.js"></script>
+                          <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+                          <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+                          <script src="https://code.highcharts.com/mapdata/countries/gb/gb-all.js"></script>
+                          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                          <script async defer
+                              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvw3KwjCFIxNTedkzYCPL-Ci-k142C2R0&callback=initMap">
+                              </script>
+                          
+                        
+                        <style>
+                            body {
+                                font: 20px Montserrat, sans-serif;
+                                line-height: 1.8;
+                                color: #f5f6f7;
+                            }
+                        p {font-size: 16px;}
+                        .margin {margin-bottom: 25px;}
+                        .bg-1 {
+                            background-color: #1abc9c; /* Green */
+                            color: #ffffff;
+                        }
+                        .bg-2 {
+                            background-color: #474e5d; /* Dark Blue */
+                            color: #ffffff;
+                        }
+                        .bg-3 {
+                            background-color: #e6e6e6; /* White */
+                            color: #555555;
+                        }
+                        .bg-4 {
+                            background-color: #2f2f2f; /* Black Gray */
+                            color: #fff;
+                        }
+                        .container-fluid {
+                            padding-top: 30px;
+                            padding-bottom: 50px;
+                        }
+                        .navbar {
+                            padding-top: 15px;
+                            padding-bottom: 15px;
+                            border: 0;
+                            border-radius: 0;
+                            margin-bottom: 0;
+                            font-size: 12px;
+                            letter-spacing: 5px;
+                        }
+                        .navbar-nav  li a:hover {
+                            color: #1abc9c !important;
+                        }
+                        
+                        .banner_holder{
+                            width: 100%;
+                            height: 300px;
+                            min-height: 200px;
+                            position: relative;
+                        }
+                        
+                        .banner_holderImage{
+                            height: 100%;
+                            position:relative;
+                            background:   url("https://s3-us-west-1.amazonaws.com/alittlepieceofmine.com/assets/images/header.jpg")no-repeat;
+                            background-size: cover;
+                            background-position: center;
+                        }
+                        
+                        h2 {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            
+                            width: 100%;
+                            text-align: center;
+                            
+                        }
+                        
+                        .chartdiv {
+                            padding-top: 10px;
+                        }
+                        
+                        .chart2 {
+                            width: 100%;
+                            min-height: 450px;
+                        }
+                        
+                        /*--------*/
+                        /* Style to reverse the caret icon from pointing downwards to upwards */
+                        .caret.caret-up {
+                            border-top-width: 0;
+                            border-bottom: 4px solid #fff;
+                        }
+                        
+                        .dropdown {
+                            position: relative;
+                            display: inline-block;
+                        }
+                        
+                        .scrollable-menu {
+                            height: auto;
+                            max-height: 200px;
+                            overflow-x: hidden;
+                        }
+                        
+                        .btn {
+                            padding: 10px 45px;
+                        }
+                        
+                        </style>
+                        
+
+                        <script>
+                            $(function () {
+                              $('#container').highcharts({
+                                                         chart: {
+                                                         type: 'spline'
+                                                         },
+                                                         title: {
+                                                         text: 'Weekly Total Power'
+                                                         },
+                                                         subtitle: {
+                                                         text: 'Source: Smart Solar Database'
+                                                         },
+                                                         xAxis: {
+                                                         categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                                                         },
+                                                         yAxis: {
+                                                         title: {
+                                                         text: 'Power'
+                                                         },
+                                                         labels: {
+                                                         formatter: function () {
+                                                         return this.value + 'W';
+                                                         }
+                                                         }
+                                                         },
+                                                         tooltip: {
+                                                         crosshairs: true,
+                                                         shared: true
+                                                         },
+                                                         plotOptions: {
+                                                         spline: {
+                                                         marker: {
+                                                         radius: 4,
+                                                         lineColor: '#666666',
+                                                         lineWidth: 1
+                                                         }
+                                                         }
+                                                         },
+                                                         series: [{
+                                                                  name: 'Total Power of the day',
+                                                                  marker: {
+                                                                  symbol: 'square'
+                                                                  },
+                                                                  data: [9.5, 14.5, 18.2, 21.5, 25.2, {
+                                                                         y: 26.5,
+                                                                         marker: {
+                                                                         symbol: 'url(https://www.highcharts.com/samples/graphics/sun.png)'
+                                                                         }
+                                                                         }, 23.3]
+                                                                  
+                                                                  }]
+                                                         });
+                              });
+                              /*var chart = new highcharts.chart({
+                                                                                chart: {
+                                                                                renderTo: 'container'
+                                                                                },
+            
+                                               series: [{
+                                                        data: [<?php echo join($data, ',') ?>],
+                                                        pointStart: 0,
+                                                        pointInterval
+                                                        }]*/
+
+                            </script>
+                        
+                        <script>
+                            $(document).ready(function(){
+                                              $(".dropdown").on("hide.bs.dropdown", function(){
+                                                                $(".btn").html('Dropdown <span class="caret"></span>');
+                                                                });
+                                              $(".dropdown").on("show.bs.dropdown", function(){
+                                                                $(".btn").html('Dropdown <span class="caret caret-up"></span>');
+                                                                });
+                                              });
+                            </script>
+                        
+                        </head>
+    <body>
+        
+        <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Home</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="weather.html">Weather</a></li>
+                        <li><a href="week.html">Week</a></li>
+                        <li><a href="control.php">Control</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="banner_holder">
+            <div class="banner_holderImage"></div>
+            <h2>Smart Solar</h2>
+        </div>
+        
+        <!-- Second Container -->
+        <div class="container-fluid bg-2 text-center">
+            <h3 class="margin">Weekly Report</h3>
+            <!--<a href="#" class="btn btn-default btn-lg">
+             <span class="glyphicon glyphicon-search"></span> Search
+             </a>-->
+            
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose Week
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu scrollable-menu">
+                    <li><a href="week0.html">10/03/2016 - 10/09/2016</a></li>
+                    <li><a href="week1.html">10/10/2016 - 10/16/2016</a></li>
+                    <li><a href="week2.html">10/17/2016 - 10/23/2016</a></li>
+                    <li><a href="week3.html">10/24/2016 - 10/30/2016</a></li>
+                    <li><a href="week4.html">10/31/2016 - 11/06/2016</a></li>
+                    <li><a href="week5.html">11/7/2016 - 11/13/2016</a></li>
+                    <li><a href="week6.html">11/14/2016 - 11/20/2016</a></li>
+                    <li><a href="week7.html">11/21/2016 - 11/27/2016</a></li>
+                </ul>
+            </div>
+            
+            <script type="text/javascript">
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+                
+                function drawChart() {
+                    /*var data = google.visualization.arrayToDataTable([
+                                                                      ['Day', 'Watts'],
+                                                                      ['2004',  1000],
+                                                                      ['2005',  1170],
+                                                                      ['2006',  660],
+                                                                      ['2007',  1030]
+                                                                      ]);
+                                                                      
+                                                                      var options = {
+                                                                          title: 'Company Performance',
+                                                                          curveType: 'function',
+                                                                          legend: { position: 'bottom' }
+                                                                      };*/
+                                                                      
+                                                                      var jsonData = $.ajax({
+                                                                                            url: "weekfetch2.php",
+                                                                                            dataType: "json",
+                                                                                            async: false
+                                                                                            }).responseText;
+                                                                      
+                                                                      var options = {
+                                                                          title: 'Average power of the week',
+                                                                          curveType: 'none',
+                                                                          legend: { position: 'bottom' },
+                                                                          hAxis: {
+                                                                              title: 'Date'
+                                                                          },
+                                                                          vAxis: {
+                                                                              title: 'Power collected'
+                                                                          },
+                                                                          chartArea:{left:70,right:30}
+                                                                      };
+                                                                                            
+                                                                      var data = new google.visualization.DataTable(jsonData);
+                                                                      
+                                                                      var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                                                                      
+                                                                      chart.draw(data, options);
+                                                                      
+                                                                      $(window).resize(function(){
+                                                                                       drawChart();
+                                                                                       });
+                }
+            </script>
+            
+            <div class="chartdiv">
+                <div id="curve_chart" class="chart2"></div>
+            </div>
+           <!-- <div id="container" style="height: 400px; min-width: 310px"></div> --->
+        </div>
+        
+               <!-- Footer -->
+        <footer class="container-fluid bg-4 text-center">
+            <p>Smart Solar @ 2016</a></p>
+        </footer>
+        
+    </body>
+</html>

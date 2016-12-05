@@ -201,7 +201,6 @@ $.ajax({
         }
     });
 
-
 }
 
 //  End -->
@@ -224,7 +223,7 @@ $.ajax({
 			<td><tt>ftp://</tt><input name="server" size="14" type="text" /></td>
 		</tr>
 		<tr>
-			<td align="center" colspan="2"><input onclick="ftpRight(this.form, 'left')" type="button" value="←" /> <input onclick="ftpRight(this.form, 'right')" type="button" value="→" /> <input onclick="ftpRight(this.form, 'down')" type="button" value="↓" /> <input onclick="ftpRight(this.form, 'up')" type="button" value="↑" /></td>
+			<td align="center" colspan="2"><input onclick="ftpRight(this.form, 'left')" type="image" src="/images/left.png" style="height:50px; width: 50px" /> <input onclick="ftpRight(this.form, 'right')" type="image" src="/images/right.png" style="height:50px; width: 50px" /> <input onclick="ftpRight(this.form, 'down')" type="image" src="/images/down.png" style="height:50px; width: 50px" /> <input onclick="ftpRight(this.form, 'up')" type="image" src="/images/up.png" style="height:50px; width: 50px" /></td>
 		</tr>
 	</tbody>
 </table>
