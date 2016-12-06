@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Smart Solar</title>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+                        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                        <script src="https://code.highcharts.com/stock/highstock.js"></script>
+                        <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                        <style>
+                            body {
+                                font: 20px Montserrat, sans-serif;
+                                line-height: 1.8;
+                                color: #f5f6f7;
+                            }
+                        p {font-size: 16px;}
+                        .margin {margin-bottom: 25px;}
+                        .bg-1 {
+                            background-color: #1abc9c; /* Green */
+                            color: #ffffff;
+                        }
+                        .bg-2 {
+                            background-color: #474e5d; /* Dark Blue */
+                            color: #ffffff;
+                        }
+                        .bg-3 {
+                            background-color: #e6e6e6; /* White */
+                            color: #555555;
+                        }
+                        .bg-4 {
+                            background-color: #2f2f2f; /* Black Gray */
+                            color: #fff;
+                        }
+                        .container-fluid {
+                            padding-top: 30px;
+                            padding-bottom: 50px;
+                        }
+                        .navbar {
+                            padding-top: 15px;
+                            padding-bottom: 15px;
+                            border: 0;
+                            border-radius: 0;
+                            margin-bottom: 0;
+                            font-size: 12px;
+                            letter-spacing: 5px;
+                        }
+                        .navbar-nav  li a:hover {
+                            color: #1abc9c !important;
+                        }
+                        
+                        .banner_holder{
+                            width: 100%;
+                            height: 300px;
+                            min-height: 200px;
+                            position: relative;
+                        }
+                        
+                        .banner_holderImage{
+                            height: 100%;
+                            position:relative;
+                            background:   url("https://s3-us-west-1.amazonaws.com/alittlepieceofmine.com/assets/images/header.jpg")no-repeat;
+                            background-size: cover;
+                            background-position: center;
+                        }
+                        
+                        h2 {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            
+                            width: 100%;
+                            text-align: center;
+                            
+                        }
+                        
+                        
+                        .chartdiv {
+                            padding-top: 10px;
+                        }
+                        
+                        .chart2 {
+                            width: 100%;
+                            min-height: 450px;
+                        }
+                        </style>
+                        
+                        <script type='text/javascript'>
+                            google.charts.load('current', {'packages':['annotationchart']});
+                            google.charts.setOnLoadCallback(drawChart);
+                            function drawChart() {
+                                /*var data = new google.visualization.DataTable();
+                                data.addColumn('date', 'Date');
+                                data.addColumn('number', 'Smart Solar Realtime');
+                                data.addColumn('string', 'Smart Solar title');
+                                data.addColumn('string', 'Smart Solar text');
+                                data.addRows([
+                                              [new Date(2314, 3, 15), 12400, undefined, undefined],
+                                              [new Date(2314, 3, 16), 24045, 'Lalibertines', 'First encounter'],
+                                              [new Date(2314, 3, 17), 35022, 'Lalibertines', 'They are very tall'],
+                                              [new Date(2314, 3, 18), 12284, 'Lalibertines', 'Attack on our crew!'],
+                                              [new Date(2314, 3, 19), 8476, 'Lalibertines', 'Heavy casualties'],
+                                              [new Date(2314, 3, 20), 0, 'Lalibertines', 'All crew lost']
+                                              ]);*/
+                                
+                                /*var data;
+                                var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div'));
+                                var options = {
+                                                   displayAnnotations: false
+                                               };
+                                
+                                function refreshData () {
+                                    jQuery.ajax({
+                                                url: "weekfetchrt.php",
+                                                dataType: "json",
+                                                success: function (data, status) {
+                                                // check status for errors
+                                                // if no errors, convert data into DataTable object
+                                                
+                                                chart.draw(data, options);
+                                                
+                                                // refresh the data every 10 seconds (10k microseconds)
+                                                setTimeout(function () {
+                                                                            refreshData();
+                                                                        }, 10000);
+                                                    }
+                                                
+                                                });
+                                }*/
+                                
+                                refresh();
+                                
+                                function refresh () {
+                                
+                                var jsonData = $.ajax({
+                                                      url: "weekfetchrt.php",
+                                                      dataType: "json",
+                                                      async: false
+                                                      }).responseText;
+                                
+                                var options = {
+                                                //allowRedraw: true,
+                                                /*chart: {
+                                                    backgroundColor: 'white', // for the area outside the chartArea
+                                                    chartArea: {
+                                                        backgroundColor: '#F0F0F0'
+                                                    }
+                                                },*/
+                                                displayAnnotations: true,
+                                                displayLegendValues: true,
+                                                legendPosition: [ 'newRow' ],
+                                                displayZoomButtons: false,
+                                                annotations: {
+                                                    textStyle: {
+                                                        color: '#871b47'
+                                                    }
+                                                }//,
+                                                //scaleColumns: [0, 2]
+                                                //scaleType: 'maximized'
+                                                //legendBackgroundColor: '#F0F0F0'
+                                              };
+                      
+                                var data = new google.visualization.DataTable(jsonData);
+                                              
+                                var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
+                                                                              
+                                chart.draw(data, options);
+                                              
+                                $(window).resize(function(){
+                                                                drawChart();
+                                                            });
+                                                            
+                                setTimeout(function () {
+                                                            refresh();
+                                                        }, 10000);
+                                                            
+                                }
+                            }
+                        </script>
+    </head>
+    <body>
+        
+        <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Home</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index.html">About</a></li>
+                        <li><a href="weather.html">Weather</a></li>
+                        <li><a href="realtimegoogle.html">Real Time</a></li>
+                        <li><a href="week.html">Week</a></li>
+                        <li><a href="location.html">Location</a></li>
+                        <li><a href="control.html">Control</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="banner_holder">
+            <div class="banner_holderImage"></div>
+            <h2>Smart Solar</h2>
+        </div>
+        
+        <!-- Second Container -->
+        <div class="container-fluid bg-2 text-center">
+            <h3 class="margin">Real Time Graphing</h3>
+
+            <!--<a href="#" class="btn btn-default btn-lg">
+                <span class="glyphicon glyphicon-search"></span> Search
+            </a>-->
+            <!--<div id="container" style="height: 400px; min-width: 310px"></div>-->
+            
+          <!--<div id='chart_div' style='width: 700px; height: 240px;'></div>-->
+          
+          <div class="chartdiv">
+                <div id="chart_div" class="chart2"></div>
+            </div>
+            
+        </div>
+               <!-- Footer -->
+        <footer class="container-fluid bg-4 text-center">
+            <p>Smart Solar @ 2016</a></p>
+        </footer>
+        
+    </body>
+</html>

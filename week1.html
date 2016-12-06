@@ -216,10 +216,12 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="about.html">About</a></li>
+                        <li><a href="index.html">About</a></li>
                         <li><a href="weather.html">Weather</a></li>
+                        <li><a href="realtimegoogle.html">Real Time</a></li>
                         <li><a href="week.html">Week</a></li>
-                        <li><a href="control.php">Control</a></li>
+                        <li><a href="location.html">Location</a></li>
+                        <li><a href="control.html">Control</a></li>
                     </ul>
                 </div>
             </div>
@@ -241,14 +243,14 @@
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose Week
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu scrollable-menu">
-                    <li><a href="week1.html">10/03/2016 - 10/09/2016</a></li>
-                    <li><a href="week2.html">10/10/2016 - 10/16/2016</a></li>
-                    <li><a href="week3.html">10/17/2016 - 10/23/2016</a></li>
-                    <li><a href="week4.html">10/24/2016 - 10/30/2016</a></li>
-                    <li><a href="week5.html">10/31/2016 - 11/06/2016</a></li>
-                    <li><a href="week6.html">11/7/2016 - 11/13/2016</a></li>
-                    <li><a href="week7.html">11/14/2016 - 11/20/2016</a></li>
-                    <li><a href="week.html">11/21/2016 - 11/27/2016</a></li>
+                    <li><a href="week0.html">10/03/2016 - 10/09/2016</a></li>
+                    <li><a href="week1.html">10/10/2016 - 10/16/2016</a></li>
+                    <li><a href="week2.html">10/17/2016 - 10/23/2016</a></li>
+                    <li><a href="week3.html">10/24/2016 - 10/30/2016</a></li>
+                    <li><a href="week4.html">10/31/2016 - 11/06/2016</a></li>
+                    <li><a href="week5.html">11/7/2016 - 11/13/2016</a></li>
+                    <li><a href="week6.html">11/14/2016 - 11/20/2016</a></li>
+                    <li><a href="week7.html">11/21/2016 - 11/27/2016</a></li>
                 </ul>
             </div>
             
@@ -272,7 +274,7 @@
                                                                       };*/
                                                                       
                                                                       var jsonData = $.ajax({
-                                                                                            url: "weekfetch.php",
+                                                                                            url: "weekfetch1.php",
                                                                                             dataType: "json",
                                                                                             async: false
                                                                                             }).responseText;

@@ -1,9 +1,11 @@
 <?php
+    
     $servername = "localhost";
     $username = "root";
     $password = "password";
     $db = "SmartSolar";
-    $myquery = "SELECT SUM(Voltage*Current) as Power, Date as Date FROM systemdata WHERE Date in ('2016-10-03', '2016-10-04', '2016-10-05','2016-10-06','2016-10-07','2016-10-08','2016-10-09') GROUP BY Date";
+    //$myquery = "SELECT CONCAT(Date, ' ', Time) as Datetime , Voltage*Current as Power FROM systemdata_nov WHERE Date in ('2016-11-29') ORDER BY id DESC LIMIT 20";
+     $myquery = "SELECT CONCAT(Date, ' ', Time) as Datetime , Voltage*Current as Power FROM systemdata_dec ORDER BY id DESC LIMIT 20";
     
     // Create connection
     $dbhandle = mysql_connect($hostname, $username, $password)
@@ -15,14 +17,21 @@
     
     $table = array();
     $table['cols'] = array(
-                           array('id' => '', 'label' => 'Days', 'pattern' => '', 'type' => 'string'),
-                           array('id' => '', 'label' => 'Watts', 'pattern' => '', 'type' => 'number')
+                           array('id' => '', 'label' => 'Datetime', 'pattern' => '', 'type' => 'datetime'),
+                           array('id' => '', 'label' => 'Power', 'pattern' => '', 'type' => 'number')
                            );
     
     $rows = array();
     while($row = mysql_fetch_array($query)) {
+        preg_match('/(\d{4})-(\d{2})-(\d{2})\s(\d{2}):(\d{2}):(\d{2})/', $row['Datetime'], $match);
+        $year = (int) $match[1];
+        $month = (int) $match[2] - 1; // convert to zero-index to match javascript's dates
+        $day = (int) $match[3];
+        $hours = (int) $match[4];
+        $minutes = (int) $match[5];
+        $seconds = (int) $match[6];
         $temp = array();
-        $temp[] = array('v' => (string) $row['Date']);
+        $temp[] = array('v' => "Date($year, $month, $day, $hours, $minutes, $seconds)");
         $temp[] = array('v' => (float) $row['Power']);
         $rows[] = array('c' => $temp);
     }
@@ -40,4 +49,4 @@
     //}
     //$json = json_encode($rows);
     echo $json;
-    ?>
+?>
